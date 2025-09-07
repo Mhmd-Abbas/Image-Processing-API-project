@@ -3,10 +3,6 @@ import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 
-/**
- * Resize an image with caching.
- * Returns the absolute path to the resized image.
- */
 export async function imageTransform(
   filename: string,
   width: string,
@@ -23,7 +19,6 @@ export async function imageTransform(
     throw new Error("Width and height must be positive numbers");
   }
 
-  // 2️⃣ File paths
   const inputPath = path.join(
     process.cwd(),
     "src",
@@ -38,12 +33,10 @@ export async function imageTransform(
 
   const outputPath = path.join(thumbDir, `${filename}_${w}x${h}.jpg`);
 
-  // 3️⃣ Serve cached image if it exists
   if (fs.existsSync(outputPath)) {
     return outputPath;
   }
 
-  // 4️⃣ Resize and save the image
   try {
     await sharp(inputPath).resize(w, h).toFile(outputPath);
     return outputPath;

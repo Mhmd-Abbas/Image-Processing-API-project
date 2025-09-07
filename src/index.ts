@@ -26,7 +26,6 @@ app.get("/api/images", async (req, res) => {
   const { filename, width, height } = req.query;
 
   try {
-    // Ensure all parameters are provided
     if (!filename && !width && !height) {
       return res
         .status(200)
@@ -35,14 +34,12 @@ app.get("/api/images", async (req, res) => {
         );
     }
 
-    // Call your async imageTransform function
     const filePath = await imageTransform(
       filename as string,
       width as string,
       height as string,
     );
 
-    // Send the resized image
     res.status(200).sendFile(filePath, (err) => {
       if (err) {
         console.error("Error sending file:", err);
@@ -52,7 +49,6 @@ app.get("/api/images", async (req, res) => {
   } catch (err: any) {
     console.error("Image processing error:", err.message);
 
-    // Determine status code based on error message
     if (
       err.message.includes("Missing") ||
       err.message.includes("positive numbers")
