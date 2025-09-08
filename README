@@ -1,7 +1,26 @@
-exisiting imges are:
+exisiting images are:
 cat1.jpg
 cat2.jpg
 cat3.jpg
 
 to build ts files and test use "npm run test"
 to start the server use "npm run start"
+
+the main endpoint is 'http://localhost:3000/api/images'
+it should always return a status 200
+
+try adding filename width height query params to see images
+
+ex: 'http://localhost:3000/api/images?filename=cat1&width=350&height=350'
+this will show you a cat pic with 350 width and 350 height
+
+try removing any of the params  or 
+putting negative values or
+putting toa filename that doesnt exist to see the error handling:
+
+ex1: 'http://localhost:3000/api/images?filename=cat1&width=350'
+
+ex2: 'http://localhost:3000/api/images?filename=cat1&width=350&height=350'
+
+ex3: 'http://localhost:3000/api/images?filename=cat4&width=350&height=350'
+
